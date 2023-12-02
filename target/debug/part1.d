@@ -1,1 +1,0 @@
-/Users/garik/Code/advent-of-code/target/debug/part1: /Users/garik/Code/advent-of-code/day-02/input.txt /Users/garik/Code/advent-of-code/day-02/src/bin/part1.rs /Users/garik/Code/advent-of-code/day-02/src/custom_error.rs /Users/garik/Code/advent-of-code/day-02/src/lib.rs /Users/garik/Code/advent-of-code/day-02/src/part1.rs /Users/garik/Code/advent-of-code/day-02/src/part2.rs
