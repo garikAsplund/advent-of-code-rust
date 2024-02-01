@@ -55,7 +55,7 @@ pub fn process(input: &str) -> miette::Result<String, AocError> {
                         None => unimplemented!("shouldn't happen"),
                     }
                 }
-                None => numbers.push(vec![((*x, *y), *num)]),
+                None => numbers.push(vec![((*x as i32, *y as i32), *num)]),
             }
             // println!("{x},{y}")
         }
