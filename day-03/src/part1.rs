@@ -37,7 +37,7 @@ pub fn process(input: &str) -> miette::Result<String, AocError> {
         .collect::<BTreeMap<(i32, i32), Value>>();
 
     // println!("{:?}", input);
-    let mut numbers: Vec<Vec<((usize, usize), u32)>> = vec![];
+    let mut numbers: Vec<Vec<((i32, i32), u32)>> = vec![];
     for ((y, x), value) in map.iter() {
         if let Value::Number(num) = value {
             match numbers.iter().last() {
@@ -55,7 +55,7 @@ pub fn process(input: &str) -> miette::Result<String, AocError> {
                         None => unimplemented!("shouldn't happen"),
                     }
                 }
-                None => numbers.push(vec![((*x as i32, *y as i32), *num)]),
+                None => numbers.push(vec![((*x, *y), *num)]),
             }
             // println!("{x},{y}")
         }
@@ -73,21 +73,18 @@ pub fn process(input: &str) -> miette::Result<String, AocError> {
             (1, 1),
         ];
 
-        let num_positions: Vec<(i32, i32)> = num_list
-            .iter()
-            .map(|((y, x), _)| (*x as i32, *y as i32))
-            .collect();
+        let num_positions: Vec<(i32, i32)> = num_list.iter().map(|((y, x), _)| (*x, *y)).collect();
         let pos_to_check: Vec<(i32, i32)> = num_list
             .iter()
             .flat_map(|(pos, _)| {
                 positions
                     .iter()
-                    .map(|outer_pos| (outer_pos.0 + pos.1 as i32, outer_pos.1 + pos.0 as i32))
+                    .map(|outer_pos| (outer_pos.0 + pos.1, outer_pos.1 + pos.0))
             })
             .filter(|num| !num_positions.contains(num))
             .collect();
 
-        dbg!(pos_to_check.len(), pos_to_check);
+        // dbg!(pos_to_check.len(), pos_to_check);
 
         let is_part_number = pos_to_check.iter().any(|pos| {
             let value = map.get(&pos);
@@ -107,9 +104,9 @@ pub fn process(input: &str) -> miette::Result<String, AocError> {
                 .unwrap()
         }
     }
-    // dbg!(numbers);
+    dbg!(total);
 
-    Ok("".to_string())
+    Ok(total.to_string())
 }
 
 #[cfg(test)]
