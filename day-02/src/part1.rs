@@ -53,7 +53,7 @@ pub fn process(
 
         println!("{:?}", output);
 
-    Ok("ok".to_string())
+    Ok(output.to_string())
 
 }
 
